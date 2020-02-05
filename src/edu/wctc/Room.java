@@ -1,8 +1,13 @@
 package edu.wctc;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Serializable {
+
+    private static int roomCount;
+    private int roomNum;
+
 
     private ArrayList<Wall> wallList;
 
@@ -17,7 +22,12 @@ public class Room {
         wallList.add(wallC);
         Wall wallD = new Wall(width, height);
         wallList.add(wallD);
+
+        roomCount++;
+        roomNum = roomCount;
     }
+
+
 
     public double getArea() {
         double area = 0;
@@ -28,5 +38,12 @@ public class Room {
         }
 
         return area;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNum= " + roomNum + "Area= " + getArea() +
+                '}';
     }
 }
